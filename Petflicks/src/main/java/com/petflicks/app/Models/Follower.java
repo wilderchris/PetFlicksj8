@@ -11,27 +11,27 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Follow {
+public class Follower {
 
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long followId;//userid?
+	private long followerId;//userid?
 	@Column
 	private long userId;// who was followed nullable
 	@Column
 	private long petId;// or pet followed  nullable
-	public Follow(long followId, long userId, long petId) {
+	public Follower(long followerId, long userId, long petId) {
 		super();
-		this.followId = followId;
+		this.followerId = followerId;
 		this.userId = userId;
 		this.petId = petId;
 	}
 	public long getFollowId() {
-		return followId;
+		return followerId;
 	}
 	public void setFollowId(long followId) {
-		this.followId = followId;
+		this.followerId = followId;
 	}
 	public long getUserId() {
 		return userId;
@@ -47,7 +47,7 @@ public class Follow {
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(followId, petId, userId);
+		return Objects.hash(followerId, petId, userId);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -57,12 +57,12 @@ public class Follow {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Follow other = (Follow) obj;
-		return followId == other.followId && petId == other.petId && userId == other.userId;
+		Follower other = (Follower) obj;
+		return followerId == other.followerId && petId == other.petId && userId == other.userId;
 	}
 	@Override
 	public String toString() {
-		return "Follow [followId=" + followId + ", userId=" + userId + ", petId=" + petId + "]";
+		return "Follower [followerId=" + followerId + ", userId=" + userId + ", petId=" + petId + "]";
 	}
 	
 	
