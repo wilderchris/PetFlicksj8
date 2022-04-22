@@ -1,5 +1,5 @@
 package com.petflicks.app.Repository;
 
-public class FollowRepository {
+public class FollowerRepository {
 
 }
