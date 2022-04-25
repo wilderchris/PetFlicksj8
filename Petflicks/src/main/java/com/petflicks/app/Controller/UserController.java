@@ -62,47 +62,47 @@ public class UserController {
 		}
 	}
 				
-	@PostMapping(path="/auth")
-	public ResponseEntity<User> logIn(@RequestBody Map<String, String> credentials){
-		//This methods responsibility is to log in the user
-
-		String username = credentials.get("username");
-		String password = credentials.get("password");
-		
-
-		try {
-			//UserDetail userDetail1 = new UserDetail(userService.getUserByUsername(username));
-			//this.authenticate(username, password);
-//			User user = userService.login(username, password);
-			User user = userService.getUserByUsername(username);
-			//UserDetail userDetail = new UserDetail(user);
-		//	HttpHeaders jwtHeader = this.getHeader(userDetail);
-			
-		//	String token = Integer.toString(user.getUserId());
-			
-			return new ResponseEntity<>(user, HttpStatus.OK);
-
-		} catch (UserNotFoundException e) {
-			return ResponseEntity.notFound().build();
-		}
-	}
+//	@PostMapping(path="/auth")
+//	public ResponseEntity<User> logIn(@RequestBody Map<String, String> credentials){
+//		//This methods responsibility is to log in the user
+//
+//		String username = credentials.get("username");
+//		String password = credentials.get("password");
+//		
+//
+//		try {
+//			//UserDetail userDetail1 = new UserDetail(userService.getUserByUsername(username));
+//			//this.authenticate(username, password);
+////			User user = userService.login(username, password);
+//			User user = userService.getUserByUsername(username);
+//			//UserDetail userDetail = new UserDetail(user);
+//		//	HttpHeaders jwtHeader = this.getHeader(userDetail);
+//			
+//		//	String token = Integer.toString(user.getUserId());
+//			
+//			return new ResponseEntity<>(user, HttpStatus.OK);
+//
+//		} catch (UserNotFoundException e) {
+//			return ResponseEntity.notFound().build();
+//		}
+//	}
 	
-	@GetMapping(path="/{userId}/auth")
-	public ResponseEntity<User> checkLogin(@PathVariable String userId) throws UserNotFoundException{
-		
-		try {
-		//	String token = tokenProvider.extractToken(authorization);
-		//	HttpHeaders jwtHeader = tokenProvider.getHeaderJWT(token);
-			User loggedInPerson =userService.getUserById(Integer.parseInt(userId));
-			if(loggedInPerson!=null)
-				return new ResponseEntity<>(loggedInPerson, HttpStatus.OK);
-			else
-				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-		}
-		catch (UserNotFoundException e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-		}
-	}
+//	@GetMapping(path="/{userId}/auth")
+//	public ResponseEntity<User> checkLogin(@PathVariable String userId) throws UserNotFoundException{
+//		
+//		try {
+//		//	String token = tokenProvider.extractToken(authorization);
+//		//	HttpHeaders jwtHeader = tokenProvider.getHeaderJWT(token);
+//			User loggedInPerson =userService.getUserById(Integer.parseInt(userId));
+//			if(loggedInPerson!=null)
+//				return new ResponseEntity<>(loggedInPerson, HttpStatus.OK);
+//			else
+//				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+//		}
+//		catch (UserNotFoundException e) {
+//			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+//		}
+//	}
 
 	@GetMapping(path="/{userId}")//
 	public ResponseEntity<User> getUserById(@PathVariable int userId) throws UserNotFoundException{
