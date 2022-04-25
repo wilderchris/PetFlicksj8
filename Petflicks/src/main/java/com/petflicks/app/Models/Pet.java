@@ -12,24 +12,27 @@ import javax.persistence.Table;
 public class Pet {
 
 	@Id
-	@Column
-	private long petId;
-	@Column
+	@Column(name="pet_id")
+	private int petId;
+	@Column(name="pet_pic_url")
 	private String petPicURL;
-	@Column
+	@Column(name="name")
 	private String name;
-	@Column
+	@Column(name="age")
 	private int age;
-	@Column
+	@Column(name="description")
 	private String description;
-	@Column
+	@Column(name="breed")
 	private String breed;
-	@Column
-	private long userId;
+	@Column(name="user_id")
+	private int userId;
 	
 	
 	
-	public Pet(long petId, String petPicURL, String name, int age, String description, String breed, long userId) {
+	public Pet() {
+		super();
+	}
+	public Pet(int petId, String petPicURL, String name, int age, String description, String breed, int userId) {
 		super();
 		this.petId = petId;
 		this.petPicURL = petPicURL;
@@ -39,7 +42,7 @@ public class Pet {
 		this.breed = breed;
 		this.userId = userId;
 	}
-	public long getPetId() {
+	public int getPetId() {
 		return petId;
 	}
 	public void setPetId(int petId) {
@@ -75,7 +78,7 @@ public class Pet {
 	public void setBreed(String breed) {
 		this.breed = breed;
 	}
-	public long getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 	public void setUserId(int userId) {

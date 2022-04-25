@@ -14,35 +14,41 @@ import javax.persistence.Table;
 public class Follower {
 
 	@Id
-	@Column
+	@Column(name="follower_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long followerId;//userid?
+	private int followerId;//userid?
 	@Column
-	private long userId;// who was followed nullable
+	private int userId;// who was followed nullable
 	@Column
-	private long petId;// or pet followed  nullable
-	public Follower(long followerId, long userId, long petId) {
+	private int petId;// or pet followed  nullable
+	
+	
+	
+	public Follower() {
+		super();
+	}
+	public Follower(int followerId, int userId, int petId) {
 		super();
 		this.followerId = followerId;
 		this.userId = userId;
 		this.petId = petId;
 	}
-	public long getFollowId() {
+	public int getFollowId() {
 		return followerId;
 	}
-	public void setFollowId(long followId) {
+	public void setFollowId(int followId) {
 		this.followerId = followId;
 	}
-	public long getUserId() {
+	public int getUserId() {
 		return userId;
 	}
-	public void setUserId(long userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	public long getPetId() {
+	public int getPetId() {
 		return petId;
 	}
-	public void setPetId(long petId) {
+	public void setPetId(int petId) {
 		this.petId = petId;
 	}
 	@Override

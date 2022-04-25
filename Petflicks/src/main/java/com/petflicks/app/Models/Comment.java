@@ -16,14 +16,23 @@ public class Comment {
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long commentId;
+	private int commentId;
 	@Column
-	private long userId;
+	private int userId;
 	@Column
-	private long postId;
+	private int postId;
 	@Column
 	private String commentText;
-	public Comment(long commentId, long userId, long postId, String commentText) {
+	
+	
+	
+	public Comment() {
+		super();
+	}
+
+
+
+	public Comment(int commentId, int userId, int postId, String commentText) {
 		super();
 		this.commentId = commentId;
 		this.userId = userId;
@@ -33,37 +42,37 @@ public class Comment {
 	
 	
 	
-	public long getCommentId() {
+	public int getCommentId() {
 		return commentId;
 	}
 
 
 
-	public void setCommentId(long commentId) {
+	public void setCommentId(int commentId) {
 		this.commentId = commentId;
 	}
 
 
 
-	public long getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
 
 
-	public void setUserId(long userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
 
 
-	public long getPostId() {
+	public int getPostId() {
 		return postId;
 	}
 
 
 
-	public void setPostId(long postId) {
+	public void setPostId(int postId) {
 		this.postId = postId;
 	}
 

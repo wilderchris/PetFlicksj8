@@ -16,7 +16,7 @@ public class User {
 	@Id
 	@Column(name="user_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long userId;//
+	private int userId;//
 	
 	@Column(name="username")
 	private String username;//
@@ -38,13 +38,13 @@ public class User {
 	@Column(name="is_not_locked")
 	private boolean isNotLocked;
 	
-	@Column
+	@Column(name="user_pic_url")
 	private String userPicURL;//
 	
-	@Column
-	private long petId;
+	@Column(name="pet_id")
+	private int petId;
 	
-	@Column
+	@Column(name="description")
 	private String description;
 	
 	
@@ -57,7 +57,7 @@ public User(int userId) {
 	this.userId = userId;
 }
 	public User(String username, String password, String firstName, String lastName,  String email,
-			String role, String userPicURL, String description, long petId) {
+			String role, String userPicURL, String description, int petId) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -74,7 +74,7 @@ public User(int userId) {
 	}
 	
 
-	public long getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
@@ -145,7 +145,7 @@ public User(int userId) {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public long getPetId() {
+	public int getPetId() {
 		return petId;
 	}
 	public void setPetId(int petId) {

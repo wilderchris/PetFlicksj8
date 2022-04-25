@@ -16,18 +16,25 @@ public class Video {
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long videoId;
+	private int videoId;
 	
-	@Column
+	@Column(name="video_url")
 	private String videoURL;
 	@Column
-	private long userId;
+	private int userId;
 	@Column
 	private String description;
 	@Column
 	private boolean like;
 	
-	public Video(long videoId, String videoURL, long userId, String description, boolean like) {
+	
+	
+	public Video() {
+		super();
+	}
+
+
+	public Video(int videoId, String videoURL, int userId, String description, boolean like) {
 		super();
 		this.videoId = videoId;
 		this.videoURL = videoURL;
@@ -37,12 +44,12 @@ public class Video {
 	}
 	
 	
-	public long getVideoId() {
+	public int getVideoId() {
 		return videoId;
 	}
 
 
-	public void setVideoId(long videoId) {
+	public void setVideoId(int videoId) {
 		this.videoId = videoId;
 	}
 
@@ -57,12 +64,12 @@ public class Video {
 	}
 
 
-	public long getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
 
-	public void setUserId(long userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 

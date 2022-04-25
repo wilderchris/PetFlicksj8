@@ -1,17 +1,18 @@
 package com.petflicks.app.Service;
 
-import java.util.Optional;
 
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.petflicks.app.Exception.InvalidLoginException;
 import com.petflicks.app.Exception.UserNotFoundException;
 import com.petflicks.app.Exception.UsernameAlreadyExists;
 import com.petflicks.app.Models.User;
-import com.petflicks.app.Repository.UserRepository.UserRepo;
+import com.petflicks.app.Repository.UserRepository;
 
 
 @Service
@@ -19,10 +20,10 @@ import com.petflicks.app.Repository.UserRepository.UserRepo;
 public class UserServiceImpl implements UserService{
 
 	
-	private UserRepo userRepo;
+	private UserRepository userRepo;
 	
 	@Autowired
-	public UserServiceImpl(UserRepo userRepo) {
+	public UserServiceImpl(UserRepository userRepo) {
 		this.userRepo = userRepo;
 	}
 	
@@ -42,10 +43,11 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User register(User newUser) throws UsernameAlreadyExists {
+	@Transactional(propagation=Propagation.SUPPORTS)
+	public User register(User newUser) throws UsernameAlreadyExists {//
 		try
 		{
-				newUser = userRepo.save(newUser);
+				newUser = ((CrudRepository<User, Integer>) userRepo).save(newUser);
 				return newUser;
 		}catch (Exception e) {
 			throw new UsernameAlreadyExists();
@@ -55,26 +57,24 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	@Transactional
-	public User getUserById(int userId) throws UserNotFoundException {
-		Optional<User> user = userRepo.findById(userId);
-		if (user.isPresent()) return user.get();
-		else return null;
+	public User getUserById(int userId) throws UserNotFoundException {/// working
+		return userRepo.findById(userId).get();
 	}
 
 	@Override
-	public User getUserByEmail(String email) throws UserNotFoundException {
-		User user = userRepo.findByEmail(email);
-		return user;
+	public User getUserByEmail(String email) throws UserNotFoundException {//working
+		return userRepo.findByEmail(email);
+		
 	}
 
 	@Override
-	public User getUserByUsername(String username) throws UserNotFoundException {
+	public User getUserByUsername(String username) throws UserNotFoundException {//
 		User user = userRepo.findByUsername(username.toLowerCase().replace(" ", ""));
 		return user;
 	}
 
 	@Override
-	public User update(User user) throws UserNotFoundException {
+	public User update(User user) throws UserNotFoundException {//
 		if (userRepo.existsById(user.getUserId())) {
 			userRepo.save(user);
 			user = userRepo.findById(user.getUserId()).get();
@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User deleteUser(User user) throws UserNotFoundException {
+	public User deleteUser(User user) throws UserNotFoundException {//
 		User userFromDatabase = userRepo.findById(user.getUserId()).get();
 		if(userFromDatabase != null) {
 			userRepo.delete(userFromDatabase);

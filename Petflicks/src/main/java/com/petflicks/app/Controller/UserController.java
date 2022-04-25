@@ -28,7 +28,7 @@ import com.petflicks.app.Service.UserService;
 public class UserController {
 
 	
-	private static UserService userService;
+	private UserService userService;
 	
 	
 	public UserController() {
@@ -43,8 +43,8 @@ public class UserController {
 	
 	
 	
-	@PostMapping
-	public ResponseEntity<Map<String,Long>> register(@RequestBody User newUser) throws UsernameAlreadyExists{
+	@PostMapping//
+	public ResponseEntity<Map<String,Integer>> register(@RequestBody User newUser){
 		//This methods responsibility is to sign up a new user
 		//no checking if user already exists
 		//no current path??
@@ -53,7 +53,7 @@ public class UserController {
 //			UserDetail userDetail = new UserDetail(newUser);
 //			String token=tokenProvider.generateToken(userDetail);
 			newUser = userService.register(newUser);
-			Map<String, Long> newIdMap = new HashMap<>();
+			Map<String, Integer> newIdMap = new HashMap<>();
 			newIdMap.put("generatedId", newUser.getUserId());
 			return ResponseEntity.status(HttpStatus.CREATED).body(newIdMap);
 			
@@ -104,21 +104,18 @@ public class UserController {
 		}
 	}
 
-	@GetMapping(path="/{userId}")
+	@GetMapping(path="/{userId}")//
 	public ResponseEntity<User> getUserById(@PathVariable int userId) throws UserNotFoundException{
-		//This methods responsibility is to return a user by their userId
-		
+		System.out.println("get by user id");
 		User user = userService.getUserById(userId);
-		
 		if (user != null) {
 		return ResponseEntity.ok(user);
 	} else
 		return ResponseEntity.notFound().build();
 	}
 	
-	@GetMapping(path="/email/{email}")
+	@GetMapping(path="/email/{email}")//
 	public ResponseEntity<User> getUserByEmail(@PathVariable String email) throws UserNotFoundException{
-		//This methods responsibility is to return a user by their email
 		User user = userService.getUserByEmail(email);
 		if (user != null) {
 		return ResponseEntity.ok(user);
@@ -126,9 +123,8 @@ public class UserController {
 			return ResponseEntity.notFound().build();
 	}
 	
-	@GetMapping(path="/username/{username}")
+	@GetMapping(path="/username/{username}")//
 	public ResponseEntity<User> getUserByUsername(@PathVariable String username) throws UserNotFoundException{
-		//This methods responsibility is to return a user by their username
 		User user = userService.getUserByUsername(username);
 		if (user != null) {
 			return ResponseEntity.ok(user);
@@ -137,12 +133,10 @@ public class UserController {
 	}
 
 	
-	@PutMapping(path="/{userId}")
+	@PutMapping(path="/{userId}")//
 	public ResponseEntity<User> updateUser(@PathVariable int userId,
 			@RequestBody User userToEdit) throws UserNotFoundException {
-		//This methods responsibility is to update a users information base on their userId
-		//No checking if data is good
-		
+			
 		if (userToEdit != null && userToEdit.getUserId() == userId) {
 			userToEdit = userService.update(userToEdit);
 			
@@ -151,14 +145,12 @@ public class UserController {
 			else
 				return ResponseEntity.notFound().build();
 		} else {
-			// conflict: the id doesn't match the id of the user sent
 			return ResponseEntity.status(HttpStatus.CONFLICT).build();
 		}
 	}
 	
-	@DeleteMapping(path="/{userId}")
+	@DeleteMapping(path="/{userId}")//
 	public ResponseEntity<Void> deleteUser(@RequestBody User deleteUser) throws UserNotFoundException {
-		//This methods responsibility is to delete a users information base on their userId
 		if (deleteUser != null) {
 			userService.deleteUser(deleteUser);
 			return ResponseEntity.status(HttpStatus.CREATED).build();

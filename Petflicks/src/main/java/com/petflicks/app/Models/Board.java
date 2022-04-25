@@ -4,6 +4,8 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,15 +14,25 @@ import javax.persistence.Table;
 public class Board {
 
 	@Id
-	@Column
+	@Column(name="board_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int boardId;
+	
 	@Column
 	private String title;
+	
 	@Column
 	private String description;
+	
 	@Column
-	private String postId;
-	public Board(int boardId, String title, String description, String postId) {
+	private int postId;
+	
+	
+	
+	public Board() {
+		super();
+	}
+	public Board(int boardId, String title, String description, int postId) {
 		super();
 		this.boardId = boardId;
 		this.title = title;
@@ -45,10 +57,10 @@ public class Board {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getPostId() {
+	public int getPostId() {
 		return postId;
 	}
-	public void setPostId(String postId) {
+	public void setPostId(int postId) {
 		this.postId = postId;
 	}
 	@Override

@@ -14,16 +14,23 @@ public class Post {
 
 	@Id
 	@Column
-	private long postId;
+	private int postId;
 	@Column
 	private String title;
 	@Column
 	private String description;
 	@Column
-	private long videoId;
+	private int videoId;
 	@Column
 	private LocalDateTime tdPosted;
-	public Post(long postId, String title, String description, long videoId, LocalDateTime tdPosted) {
+	
+	
+	
+	
+	public Post() {
+		super();
+	}
+	public Post(int postId, String title, String description, int videoId, LocalDateTime tdPosted) {
 		super();
 		this.postId = postId;
 		this.title = title;
@@ -31,7 +38,7 @@ public class Post {
 		this.videoId = videoId;
 		this.tdPosted = tdPosted;
 	}
-	public long getPostId() {
+	public int getPostId() {
 		return postId;
 	}
 	public void setPostId(int postId) {
@@ -49,7 +56,7 @@ public class Post {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public long getVideoId() {
+	public int getVideoId() {
 		return videoId;
 	}
 	public void setVideoId(int videoId) {
