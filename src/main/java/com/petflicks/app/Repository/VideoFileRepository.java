@@ -1,5 +1,6 @@
 package com.petflicks.app.Repository;
 
-public class VideoRepository {
+public class VideoFileRepository {
 
+	
 }
