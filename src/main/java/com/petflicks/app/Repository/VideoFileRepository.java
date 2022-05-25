@@ -8,9 +8,7 @@ public class VideoFileRepository {
 	        .ignoreIfMalformed()
 	        .ignoreIfMissing()
 	        .load();
-	final String ACCESS = dotenv.get("MY_ENV_ACCESS");
-	final String SECRET = dotenv.get("MY_ENV_SECRET");
+	
 
-
-	System.out.println(ACCESS + "    " + SECRET);
+	
 }
