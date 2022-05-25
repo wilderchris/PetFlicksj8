@@ -2,9 +2,7 @@
 
 This is written in Java 8 Spring Boot and Angular 13
 
-there is a seperate for a <img src="https://github.com/devicons/devicon/blob/master/icons/python/python-original-wordmark.svg" title="Python" alt="Python" width="60" height="60"/>&nbsp;
- project using <img src="https://github.com/devicons/devicon/blob/master/icons/django/django-plain-wordmark.svg" title="Django"alt="Django" width="60" height="60"/>&nbsp; 
- that is also being worked on
+there is a seperate for a project using that is also being worked on
 
 
 
