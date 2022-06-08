@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public interface VideoService {
 
-	public void store(MultipartFile file);
+	public void uploadVideo(MultipartFile file);
 	
 	
 	
